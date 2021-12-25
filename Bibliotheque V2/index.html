@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <div class="modal" id="modal">
+        <div class="modal-content">
+        <form id="form" class="modal-form" >
+        <div class="modal-field">
+           <input type="text" id="titre" data-index="new" class="modal-field" placeholder="Titre">
+           <span></span>
+        </div>
+           <br>
+        <div class="modal-field">
+           <input type="text" id="auteur" class="modal-field" placeholder="Auteur" >
+           <span></span>
+        </div>
+           <br>
+        <div class="modal-field">
+           <input type="text" id="prix" class="modal-field" placeholder="Prix" >
+           <span id="validPrix"></span>
+        </div>
+           <br>
+        <div class="modal-field">
+           <input type="date" id="date" class="modal-field" placeholder="Date Pub">
+           <span></span>
+        </div>
+         <br>
+        <div class="modal-field">
+           <input type="text" id="email" class="modal-field" placeholder="Email">
+           <span id="validEmail"></span>
+        </div>
+              <br>
+        <div class="modal-field">
+           <select  class="modal-field" id="langue">
+            <option disabled selected hidden value="0">-- selectionner une Langue--</option>
+               <option value="Arabe">Arabe</option>
+               <option value="Anglais">Anglais</option>
+               <option value="Français">Français</option>
+           </select>
+           <span id="validLang"></span>
+        </div>
+      <br>
+        <div class="modal-field">
+           <input type="radio" name="choice" value="Roman" id="r"> 
+           <label for="r">Roman</label>
+           <input type="radio" name="choice" value="Essaie" id="r1">
+           <label for="r1">Essaie</label>
+           <input type="radio" name="choice" value="Bande-Dessinée" id="r2">
+           <label for="r2">Bande-Dessinée</label>
+           <p id="validType"></p>
+       </div>
+       
+       </form>
+       <div class="modal-footer">
+       <button id="btn1" onclick="validation();">Enregistrer</button><br><br>
+     </div>
+    </div>
+</div>
+       
+       
+
+
+       <Table id="table" >
+           <thead><th>Titre</th>
+               <th>Auteur</th>
+               <th>Date</th>
+                <th>Prix</th>
+                <th>Email</th>
+                <th>Type</th>
+                <th>Langue</th>
+            </thead>
+           <tbody></tbody>
+   
+       </Table>
+    </main>
+    <script src="script.js"></script>
+    
+   
+   
+
+
+ 
+
+</body>
+</html>
