@@ -7,6 +7,7 @@ var inputLangue = document.getElementById("langue");
 var input = document.getElementsByTagName("input");
 
 var selectedIndex = -1;
+var isValid = 0;
 
 var tbody = document.querySelector("tbody");
 
@@ -24,8 +25,8 @@ class Ouvrage{
         this.Lang = Lang;
     }
     DétailOuvrage(){
-    return "L'ouvrage" + Titre + "est un" + this.Typee + "en langue" + this.Lang +
-     ", écrit par" + this.Auteur + "et publié le"+ this.Date +". Le prix de"+ this.Titre +
+    return "L'ouvrage" +this.Titre + "est un" + this.Typee + "en langue" + this.Lang +
+     ", écrit par " + this.Auteur + "et publié le"+ this.Date +". Le prix de"+ this.Titre +
       "est de "+ this.Prix + "Dhs.";
 }
 
@@ -46,13 +47,30 @@ afficher()
 GetDataFromLocalStorage();
 
 btnSave.onclick =  function(){   
-   var lng = document.querySelector("select");
+    var regexrice= /^[-+]?[0-9]+\.[0-9]+$/
+    
+        if(!regexrice.test(inputPrix.value))
+        {
+            inputPrix.style.borderColor="red"
+            isValid++;
+        }
+        var  regexEmail= /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(!regexEmail.test(email.value)){
+            inputEmail.style.borderColor = "red";
+            isValid++;
+        }
+
+       
+
+    if(isValid==0){
+        var lng = document.querySelector("select");
    var typ = document.querySelector("input[name='choice']:checked")
     var o = new Ouvrage(inputTitre.value,inputAuteur.value,inputDate.value,
         inputPrix.value,inputEmail.value,typ.value,lng.value);
         //Ajouter ouvrage ds liste
         if(selectedIndex ==-1){
             ouvrageArray.push(o);
+            alert(o.DétailOuvrage());
         }
         else{
             ouvrageArray.splice(selectedIndex,1,o);
@@ -65,6 +83,8 @@ btnSave.onclick =  function(){
     AddToLocalStorage(ouvrageArray);
     addrows();
     resetForm(); 
+    }    
+   
 }
 //AddToPage fonction qui permet d'Ajouter la liste des ouvrages ds la page(table)
 
@@ -90,39 +110,7 @@ function AddToLocalStorage(ouvrages){
 function  GetDataFromLocalStorage(){
     var LstOuvrage = JSON.parse(localStorage.getItem("LstOuvrage"));
 }
-function validation(){
 
- 
-    var lll=document.querySelector("select");
-    if(isValid==0){
-        if(btnSave.innerHTML=="Enregistrer"){
-       var p = new Ouvrage(inputTitre.value,inputAuteur.value,inputDate.value,
-                            inputPrix.value, inputEmail.value,
-            document.querySelector("input[name='choice']:checked").value,lll.value);
-    lst.push(p);
-    
-    
-       
-        localStorage.setItem("LstOuvrage", JSON.stringify(lst));
-        CreateRow();
-        resetForm();
-}
-if(btnSave.innerHTML=="Modifier")
-{
-var p = new Ouvrage(inputTitre.value,inputAuteur.value,inputDate.value, inputPrix.value, inputEmail.value,sss.value,lll.value);
-    lst.push(p);
-row.cells[0].innerHTML = p.Titre;
-row.cells[1].innerHTML = p.Auteur;
-row.cells[2].innerHTML = p.Date;
-row.cells[3].innerHTML = p.Prix;
-row.cells[4].innerHTML = p.Email;
-row.cells[5].innerHTML  = p.Typee;
-row.cells[6].innerHTML  = p.Lang;
-btnSave.innerHTML = "Enregistrer";
-}
-    }            
-
-}
 
 /*OnEdit pour rechargé les informations dans le formulaire*/ 
 function onEdit(r)
