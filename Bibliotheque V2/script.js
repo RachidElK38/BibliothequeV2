@@ -150,7 +150,7 @@ inputEmail.value="";
 inputPrix.value="";
 }
 //Print 
-/*function printAll(){
+function printAll(){
    var p= document.querySelector("table");
    var wwe= window.open("","","width=900,height=700");
    wwe.document.write(p.outerHTML);
@@ -158,4 +158,4 @@ inputPrix.value="";
    wwe.focus();
    wwe.print();
    wwe.close();
-}*/
+}
